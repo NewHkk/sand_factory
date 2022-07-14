@@ -20,6 +20,7 @@
 </form>
 <button id="button1", value="1", onclick="">开车</button>
 <button id="button2", value="0", onclick="stopCar()">停车</button>
+<button id ="snap" onclick="request_snap()">拍照</button>
 <script src="{% static 'js/jquery.js' %}"></script>
 <script>
     $(document).ready(function (){
@@ -60,6 +61,15 @@
                 }
             })
         };
+    function request_snap() {
+    $.ajax({
+        'url': 'snap',  //访问的url地址
+        'dateType': 'json',  //想要获得的返回数据类型
+        success: function (data){
+            document.getElementById('info').innerHTML = data['msg']
+        }
+    })
+    }
 </script>
 <li><a href="/logout/">退出</a></li>
 </body>

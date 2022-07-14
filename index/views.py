@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 import paho.mqtt.client as mqtt
 import manage_system.gloabl_var as global_var
-
+import cv2
 
 mqttBroker = "mqtt.eclipseprojects.io"
 
@@ -28,3 +28,11 @@ def publishMsg(request):
 
 def get_info(request):
     return JsonResponse({"msg": global_var.get_value("msg")})
+
+def get_snap_img(request):
+    cap = cv2.VideoCapture(0)
+    ret, frame = cap.read()
+    res = cv2.imwrite("snap.jpg",frame)
+    print("snap...")
+    cap.release()
+    return JsonResponse({"msg": "success"})
