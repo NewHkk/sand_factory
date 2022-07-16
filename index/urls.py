@@ -6,5 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('msg/', views.publishMsg, name='pubMsg'),
     path('getInfo/', views.get_info, name='getInfo'),
-    path('snap/', views.get_snap_img, name='snap'),
+    path('snap/', views.snapImage, name='snap'),
 ]
